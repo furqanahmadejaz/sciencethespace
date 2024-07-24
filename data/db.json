@@ -1,0 +1,16 @@
+{
+  "blogs": [
+    {
+      "title": "The Big Bang Theory",
+      "body": "The big bang theory states that the universe started as a big explosion from a single point called the singularity.",
+      "author": "mario",
+      "id": "1"
+    },
+    {
+      "id": "b2e7",
+      "title": "The Solar System",
+      "body": "The solar system consists of eight planets and the sun.",
+      "author": "luigi"
+    }
+  ]
+}
