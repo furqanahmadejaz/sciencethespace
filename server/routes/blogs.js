@@ -13,6 +13,4 @@ router.delete('/:_id', deleteBlog)
 router.patch('/:_id', updateBlog)
 
 
-
-
 module.exports = router

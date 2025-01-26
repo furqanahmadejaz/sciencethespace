@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const blogs = require('./routes/blogs')
+const users = require('./routes/users')
 const cors = require('cors')
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(
 );
 app.use(express.json())
 app.use('/api/blogs', blogs)
+app.use('/api/user', users)
 
 
 mongoose.connect(process.env.MONGO_URI)
