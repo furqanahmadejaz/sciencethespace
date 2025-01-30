@@ -8,11 +8,6 @@ const BlogDetails = ({blog}) => {
     const [show, setShow] = useState("show more")
     const [expand, setExpand] = useState(false)
 
-
-    
-
-
-    
     const handleClick = async() => {
         const response = await fetch('http://localhost:4000/api/blogs/' + blog._id, {
             method: "DELETE"
@@ -37,8 +32,6 @@ const BlogDetails = ({blog}) => {
         }
 
     }
-
-
     return (
       <div className="blog-details">
         <div className="blog-title">{blog.title}</div>
