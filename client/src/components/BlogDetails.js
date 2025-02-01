@@ -1,22 +1,16 @@
 import { useState, useEffect } from "react"
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const BlogDetails = ({blog}) => {
+    const {user} = useAuthContext()
 
     const blogPreview = blog.body.substring(0, 400) + "...";
     const [blogBody, setBlogBody] = useState(blogPreview)
     const [show, setShow] = useState("show more")
     const [expand, setExpand] = useState(false)
 
-    const handleClick = async() => {
-        const response = await fetch('http://localhost:4000/api/blogs/' + blog._id, {
-            method: "DELETE"
-        })
-
-        if(response.ok){
-            console.log(response)
-        }
-    }
+   
     const handleBlogClick = () =>{
         
         if(expand){
@@ -41,7 +35,6 @@ const BlogDetails = ({blog}) => {
         </div>
 
         <div className="blog-author">{blog.author}</div>
-        <span onClick={handleClick}>Delete Blog</span>
       </div>
     );
 }

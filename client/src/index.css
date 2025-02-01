@@ -50,9 +50,16 @@
 
 /* delete button */
 
-.blog-details span{
+.delete-button {
   cursor: pointer;
   background-color: red;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 10px;
+}
+.edit-button{
+   cursor: pointer;
+  background-color: green;
   border-radius: 30px;
   padding: 10px;
   margin: 10px;

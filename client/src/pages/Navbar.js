@@ -18,6 +18,7 @@ const Navbar = () => {
             <Link to="/create"> New Blog </Link>
             <div>{user.email}</div>
             <button onClick={handleClick}>Logout</button>
+            <Link to = "/userblogs"> My Blogs</Link>
           </div>
         )}
 

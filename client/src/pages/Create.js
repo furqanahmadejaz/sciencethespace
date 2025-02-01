@@ -1,13 +1,20 @@
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Create = () => {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [author, setAuthor] = useState('')
+    const [error, setError] = useState(null)
 
+    const {user} = useAuthContext()
 
     const handleClick = async(e) =>{
         e.preventDefault()
+        if(!user){
+          setError("You must be logged in")
+          return
+        }
         const blog = {
             title, body, author
         }
@@ -16,7 +23,8 @@ const Create = () => {
             method: "POST",
             body: JSON.stringify(blog),
             headers:{
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${user.token}`
             }
         })
 
@@ -53,7 +61,9 @@ const Create = () => {
             value={author}
           />
           <button onClick={handleClick}>Submit</button>
+          
         </form>
+        {error && <div>{error}</div>}
       </div>
     );
 }

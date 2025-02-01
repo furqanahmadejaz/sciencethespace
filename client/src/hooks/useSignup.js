@@ -11,7 +11,7 @@ const useSignup = () => {
         setIsLoading(true)
         setError(false)
 
-        const response = await fetch("http://localhost:4000/api/user/login", {
+        const response = await fetch("http://localhost:4000/api/user/signup", {
           method: "POST",
           body: JSON.stringify({ email, password }),
           headers: {
@@ -19,7 +19,7 @@ const useSignup = () => {
           },
         });
         
-        const json = response.json()
+        const json = await response.json()
         if(!response.ok){
             setIsLoading(false)
             setError(json.error)

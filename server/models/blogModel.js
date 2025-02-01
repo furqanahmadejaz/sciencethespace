@@ -11,8 +11,13 @@ const blogSchema = new Schema({
     type: String,
     required: true
   },
+  
   author:{
     type:String,
+    required: true
+  },
+  user_id:{
+    type: String,
     required: true
   }
 
