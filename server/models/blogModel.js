@@ -2,6 +2,18 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+const commentSchema = new Schema({
+  user:{
+    type: String,
+    required: true
+  },
+  text: {
+    type: String,
+    required: true
+  }
+
+},{timestamps: true})
+
 const blogSchema = new Schema({
   title: {
     type: String,
@@ -19,8 +31,12 @@ const blogSchema = new Schema({
   user_id:{
     type: String,
     required: true
+  },
+  comments: {
+    type:[commentSchema],
+    default: []
   }
 
-});
+}, {timestamps: true});
 
 module.exports = mongoose.model('Blog', blogSchema)

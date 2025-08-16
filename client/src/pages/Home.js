@@ -1,23 +1,29 @@
 import BlogDetails from "../components/BlogDetails";
 import { useState, useEffect } from "react";
+import SearchBox from "../components/SearchBox";
 
 const Home = () => {
    const [blogs, setBlogs] = useState(null);
-   useEffect(() => {
+   
      const fetchBlogs = async () => {
        const res = await fetch("http://localhost:4000/api/blogs");
        const json = await res.json();
        setBlogs(json);
      };
-     fetchBlogs();
-   });
+
+     useEffect(()=>{
+      fetchBlogs();
+   
+     }, [])
+     
 
     return (
       <div className="home">
         <div className="title">Science The Space</div>
+        <SearchBox setBlogs={setBlogs} />
         {blogs &&
           blogs.map((blog) => (
-            <BlogDetails key={blog._id} blog={blog} />
+            <BlogDetails key={blog._id} blog={blog} fetchBlogs={fetchBlogs}/>
           ))}
       </div>
     );

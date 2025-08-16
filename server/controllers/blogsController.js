@@ -25,7 +25,6 @@ const getBlog = async (req, res) => {
     return res.status(404).json({error: "No document with this id exists"})
   }
   res.status(200).json(blog)
-
 };
 
 const getUserBlogs = async (req, res) => {
@@ -69,10 +68,7 @@ const deleteBlog = async (req, res) => {
   if(blog.user_id != user_id){
     return res.status(401).json({error: "You are not authorized to delete this document"})
   } 
-
   await Blog.findOneAndDelete({_id})
-
-  
   res.status(200).json(blog);
 };
 
@@ -94,7 +90,24 @@ const updateBlog = async (req, res) => {
     res.status(200).json(blog);
 };
 
+const postComments = async (req, res) =>{
+  const {_id} = req.params;
+  const user_id = req.user._id;
+
+  const {text} = req.body;
+
+  try{
+  const blog = await Blog.findByIdAndUpdate({_id},  {$push : {comments: {user: user_id, text}}});
+
+  if(!blog){
+    return res.status(404).json({error: "Cannot post comment"})
+  }
+  res.status(200).json(blog.comments);
+
+  }catch(error){
+    console.log(error);
+  }
+}
 
 
-
-module.exports = {getBlog, getBlogs, newBlog, deleteBlog, updateBlog, getUserBlogs}
+module.exports = {getBlog, getBlogs, newBlog, deleteBlog, updateBlog, getUserBlogs, postComments}
